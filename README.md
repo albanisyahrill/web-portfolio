@@ -1,4 +1,4 @@
-# NEURAL//OS — Personal Portfolio
+# Personal Web Portfolio
 
 A futuristic portfolio website themed as a "sci-fi operating system". Frontend in **React (Vite)**, backend in **Go** (standard library, no dependencies).
 
