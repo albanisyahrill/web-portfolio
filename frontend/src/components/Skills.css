@@ -1,0 +1,303 @@
+.skills-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 56px;
+  align-items: center;
+}
+
+/* ---------- Orbit ---------- */
+.orbit-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.orbit {
+  position: relative;
+  width: min(520px, 100%);
+  aspect-ratio: 1;
+  container-type: inline-size;
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--r) * 2cqw);
+  height: calc(var(--r) * 2cqw);
+  margin: calc(var(--r) * -1cqw) 0 0 calc(var(--r) * -1cqw);
+  border: 1px dashed color-mix(in srgb, var(--ring-color) 35%, transparent);
+  border-radius: 50%;
+  animation: spin var(--dur) linear infinite var(--dir);
+}
+.orbit:hover .orbit-ring,
+.orbit:hover .orbit-spin,
+.orbit:focus-within .orbit-ring,
+.orbit:focus-within .orbit-spin {
+  animation-play-state: paused;
+}
+
+.orbit-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: rotate(var(--a)) translateX(calc(var(--r) * 1cqw)) rotate(calc(-1 * var(--a)));
+}
+.orbit-node::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: var(--ring-color);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px var(--ring-color);
+  transition: transform 0.25s ease, inset 0.25s ease;
+}
+.orbit-node:hover::before,
+.orbit-node.is-active::before {
+  inset: 0;
+  transform: rotate(225deg);
+  box-shadow: 0 0 18px var(--ring-color), 0 0 40px var(--ring-color);
+}
+
+.orbit-spin {
+  position: absolute;
+  inset: 0;
+  animation: spin var(--dur) linear infinite var(--counter-dir);
+}
+.orbit-text {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+.orbit-node:hover .orbit-text,
+.orbit-node.is-active .orbit-text {
+  color: #fff;
+  text-shadow: 0 0 8px var(--ring-color);
+}
+
+.orbit-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24cqw;
+  height: 24cqw;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: radial-gradient(circle, rgba(31, 139, 255, 0.3), rgba(2, 6, 16, 0.9) 70%);
+  box-shadow: 0 0 40px rgba(31, 139, 255, 0.3), inset 0 0 30px rgba(45, 226, 255, 0.15);
+}
+.orbit-core strong {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  color: #fff;
+  text-shadow: 0 0 16px var(--cyan);
+}
+/* Long names shrink to stay inside the core */
+.orbit-core .orbit-core-meta {
+  margin-top: 2px;
+  font-size: max(9px, 1.7cqw);
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.orbit-core .orbit-core-idle {
+  font-size: 4.6cqw;
+  letter-spacing: 0.08em;
+}
+.orbit-core-cat {
+  font-size: max(9px, 1.8cqw);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.orbit-core-name {
+  font-size: max(10px, 2.2cqw);
+  color: var(--muted);
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Ring focus (hovering a card or node) ---------- */
+.orbit-ring {
+  transition: opacity 0.35s ease, border-color 0.35s ease;
+}
+.orbit.has-focus .orbit-ring {
+  opacity: 0.28;
+}
+.orbit.has-focus .orbit-ring.is-focus {
+  opacity: 1;
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--ring-color) 60%, transparent);
+  box-shadow: 0 0 24px -6px var(--ring-color), inset 0 0 24px -10px var(--ring-color);
+}
+.orbit-ring.is-focus .orbit-text {
+  color: var(--ice);
+}
+
+/* ---------- Category cards ---------- */
+.skill-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.skill-group {
+  position: relative;
+  padding: 20px 20px 22px;
+  border: 1px solid var(--line);
+  background: linear-gradient(150deg, color-mix(in srgb, var(--ring-color) 10%, transparent), rgba(4, 10, 22, 0.7) 55%);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+  transition: border-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+}
+.skill-group::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--ring-color);
+  box-shadow: 0 0 12px var(--ring-color);
+  transform: scaleY(0.25);
+  transform-origin: top;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.skill-group.is-focus {
+  border-color: color-mix(in srgb, var(--ring-color) 55%, transparent);
+  transform: translateY(-3px);
+}
+.skill-group.is-focus::before {
+  transform: scaleY(1);
+}
+.skill-group.is-dim {
+  opacity: 0.45;
+  filter: saturate(0.6);
+}
+
+.skill-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.skill-group-idx {
+  font-size: 11px;
+  color: var(--ring-color);
+}
+.skill-group-head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.skill-group-count {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.skill-chips li {
+  padding: 5px 11px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: rgba(2, 6, 14, 0.6);
+  cursor: default;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.skill-chips li::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 0 8px 2px 0;
+  background: var(--ring-color);
+  transform: rotate(45deg);
+}
+.skill-chips li:hover,
+.skill-chips li.is-active {
+  color: #fff;
+  border-color: var(--ring-color);
+  background: color-mix(in srgb, var(--ring-color) 14%, transparent);
+  box-shadow: 0 0 14px -4px var(--ring-color);
+}
+
+@media (max-width: 960px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .orbit-text {
+    font-size: 9px;
+  }
+  .skill-groups {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Touch / phone ---------- */
+.skills {
+  overflow-x: clip;
+}
+
+@media (pointer: coarse) {
+  /* Bigger invisible hit area around each tiny node */
+  .orbit-node::after {
+    content: '';
+    position: absolute;
+    inset: -9px;
+  }
+}
+
+@media (max-width: 640px) {
+  .orbit {
+    width: 100%;
+  }
+  /* 30+ labels can't fit on a phone: show only the tapped one, the core names it too */
+  .orbit-text {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .orbit-node.is-active .orbit-text {
+    opacity: 1;
+  }
+  .orbit-node::before {
+    inset: 2px;
+  }
+}

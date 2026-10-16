@@ -1,0 +1,376 @@
+:root {
+  --bg: #02040a;
+  --bg-2: #050b16;
+  --panel: rgba(7, 16, 32, 0.62);
+  --panel-solid: #060f1d;
+  --line: rgba(64, 156, 255, 0.16);
+  --line-strong: rgba(64, 156, 255, 0.42);
+  --blue: #1f8bff;
+  --blue-deep: #0050ff;
+  --cyan: #2de2ff;
+  --ice: #cfe8ff;
+  --text: #d4e2f4;
+  --muted: #7d93b2;
+  --dim: #3e5374;
+  --danger: #ff4d7a;
+  --ok: #3dffb0;
+
+  --font-display: 'Orbitron', 'Chakra Petch', sans-serif;
+  --font-body: 'Chakra Petch', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --glow: 0 0 18px rgba(31, 139, 255, 0.45), 0 0 60px rgba(31, 139, 255, 0.12);
+  --chamfer: 14px;
+  --max: 1200px;
+  --nav-h: 0px;
+  --rail-w: 92px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  /* Rotated decorations (orbit rings) must never create sideways scroll on phones. */
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* CRT scanlines + vignette over everything */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  background:
+    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+::selection {
+  background: var(--blue);
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 1px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--blue-deep), var(--cyan));
+}
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  position: relative;
+  padding: 130px 0;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- HUD frame: corner brackets drawn with 8 gradients ---------- */
+.hud-frame {
+  --c: var(--cyan);
+  --s: 16px;
+  position: relative;
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--s) 1.5px no-repeat,
+    linear-gradient(var(--c), var(--c)) top left / 1.5px var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / var(--s) 1.5px no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / 1.5px var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / var(--s) 1.5px no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / 1.5px var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / var(--s) 1.5px no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / 1.5px var(--s) no-repeat,
+    var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ---------- Buttons with chamfered corners ---------- */
+.btn {
+  --btn-bg: transparent;
+  --btn-border: var(--line-strong);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
+  isolation: isolate;
+  clip-path: polygon(var(--chamfer) 0, 100% 0, 100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%, 0 100%, 0 var(--chamfer));
+  background: var(--btn-border);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background: var(--btn-bg);
+  clip-path: inherit;
+  transition: background 0.25s ease;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+.btn:hover::after {
+  transform: translateX(120%);
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn-primary {
+  --btn-bg: linear-gradient(120deg, var(--blue-deep), var(--blue) 60%, var(--cyan));
+  --btn-border: var(--cyan);
+  color: #fff;
+  filter: drop-shadow(0 0 14px rgba(31, 139, 255, 0.5));
+}
+.btn-ghost {
+  --btn-bg: rgba(4, 10, 22, 0.85);
+  color: var(--ice);
+}
+.btn-ghost:hover {
+  --btn-border: var(--cyan);
+  color: var(--cyan);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--cyan);
+  border: 1px solid rgba(45, 226, 255, 0.25);
+  background: rgba(45, 226, 255, 0.05);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 10px var(--ok);
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(6px);
+  transition:
+    opacity 0.8s ease var(--delay, 0ms),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay, 0ms),
+    filter 0.8s ease var(--delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* ---------- Section header ---------- */
+.section-header {
+  margin-bottom: 64px;
+}
+.section-kicker {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.section-kicker span {
+  color: var(--cyan);
+}
+.section-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(34px, 6vw, 64px);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: linear-gradient(100deg, #fff 10%, var(--ice) 40%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.section-desc {
+  max-width: 620px;
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+.section-rule {
+  position: relative;
+  height: 1px;
+  margin-top: 28px;
+  background: var(--line);
+  overflow: hidden;
+}
+.section-rule span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), transparent);
+  transition: width 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s;
+}
+.section-header.is-visible .section-rule span {
+  width: 45%;
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+  .container {
+    padding: 0 16px;
+  }
+  .section {
+    padding: 96px 0;
+  }
+  .section-header {
+    margin-bottom: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Project type chip — shared by cards and the project modal */
+.project-type {
+  --tc: var(--blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px 2px 7px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--tc);
+  border: 1px solid color-mix(in srgb, var(--tc) 45%, transparent);
+  background: color-mix(in srgb, var(--tc) 10%, transparent);
+  clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+}
+.project-type::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+.project-type.is-personal {
+  --tc: var(--cyan);
+}
+.project-type.is-personal::before {
+  background: transparent;
+  border: 1px solid currentColor;
+  box-shadow: none;
+  transform: rotate(45deg);
+}

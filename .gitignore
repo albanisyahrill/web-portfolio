@@ -1,0 +1,8 @@
+node_modules/
+frontend/dist/
+backend/portfolio
+backend/portfolio.exe
+backend/data/messages.json
+backend/data/*.tmp
+.env
+.env.local

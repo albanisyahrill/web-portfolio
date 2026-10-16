@@ -1,0 +1,12 @@
+**/node_modules
+frontend/dist
+frontend/.ssr-tmp
+backend/data/messages.json
+backend/data/*.tmp
+backend/*.exe
+backend/portfolio
+.git
+.env*
+*.md
+Dockerfile
+docker-compose.yml

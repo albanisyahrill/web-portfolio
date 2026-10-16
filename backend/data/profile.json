@@ -1,0 +1,257 @@
+{
+  "profile": {
+    "name": "Muhamad Albani Syahril",
+    "alias": "Hollow Engineer",
+    "initials": "AS",
+    "roles": [
+      "AI & Software Engineer",
+      "Devops Engineer",
+      "Data Engineer",
+      "Data Scientist"
+    ],
+    "tagline": "I am an AI & Software Engineer who builds end-to-end production AI systems across STT, LLMs, TTS, and RAG, with a track record of owning AI delivery independently.",
+    "bio": [
+      "Hi! I'm Albani, an AI & Software Engineer with a proven track record of architecting end-to-end machine learning pipelines and advanced NLP systems.",
+      "Expertise spans from executing cost-efficient LLM integrations and robust backend orchestration (FastAPI, Redis, Celery, Kafka) to designing high-precision RAG architectures and low-latency TTS models.",
+      "Adept at balancing technical innovation with strict resource constraints to deliver scalable, secure, and highly optimized production environments."
+    ],
+    "location": "Bogor, Indonesia",
+    "coordinates": "6.5971° S, 106.7928° E",
+    "timezone": "Asia/Jakarta",
+    "email": "albanisyahril123@gmail.com",
+    "languages": ["Indonesian", "English"],
+    "available": true,
+    "avatar": "/avatar.jpg",
+    "resumeUrl": "https://drive.google.com/file/d/1Jawatm4qJXKVcafOz87NmtKwyNsAsklg/view?usp=sharing",
+    "socials": [
+      { "name": "GitHub", "handle": "@albanisyahrill", "url": "https://github.com/albanisyahrill" },
+      { "name": "LinkedIn", "handle": "in/albani-syahril", "url": "https://www.linkedin.com/in/albani-syahril/" }
+    ],
+    "stats": [
+      { "label": "Years of Experience", "value": 2, "suffix": "+" },
+      { "label": "Projects Completed (Personal and Professional)", "value": 10, "suffix": "" },
+      { "label": "Cups of Coffee", "value": 484, "suffix": "" }
+    ]
+  },
+  "skills": [
+    {
+      "category": "AI Engineer",
+      "items": ["Python", "FastAPI", "Docker", "MongoDB", "Linux", "Minio", "Pytorch", "TensorFlow", "vLLM", "Langchain", "FAISS", "Hugging Face"]
+    },
+    {
+      "category": "Backend Engineer",
+      "items": ["Python", "FastAPI", "Golang", "Kafka", "Minio", "Linux", "MongoDB", "PostgreSQL", "Redis", "Git"]
+    },
+    {
+      "category": "DevOps Engineer",
+      "items": ["Linux", "Docker", "Minio", "Shell", "Jenkins", "Prometheus", "Grafana"]
+    },
+    {
+      "category": "Data Engineer",
+      "items": ["Python", "SQL", "PySpark", "Airflow", "Selenium", "Dimensional Modeling Architecture"]
+    }
+  ],
+  "experience": [
+    {
+      "period": "March 2026 - Present",
+      "role": "AI & Software Engineer",
+      "company": "Coventry Enterprises Singapore",
+      "location": "Worldwide",
+      "type": "Full-time",
+      "description": "Solo AI engineer owning the AI layer of an interactive, voice-driven 3D simulation platform, designing and shipping narrative branching logic, RAG-based retrieval, and localized speech synthesis.",
+      "highlights": [
+        "Designed technical specifications and defined solutions for new feature development, ensuring system scalability and preventing performance overhead",
+        "Architected a dynamic, prompt-driven narrative branching system, replacing legacy hard-coded transitions and improving branch routing accuracy by ~40% on a quantized model",
+        "Redesigned the AI decision-making architecture for dynamic narrative branching by implementing an embedding-based semantic scoring model. This resolved storyline inconsistencies and achieved an approximately 90% accuracy rate in intent detection for branch triggering",
+        "Identified and resolved a critical semantic bias in the RAG pipeline. Refactored the embedding strategy to index only question intents via FAISS, utilizing MongoDB for post-retrieval payload resolution. This architectural shift guaranteed high-precision semantic matching and boosted overall retrieval accuracy approximately 55%",
+        "Developed a shell script to automate Docker container isolation transitions between staging and client demo environments for resource-heavy AI models, eliminating manual rebuilds and reducing environment switching time by over 93%",
+        "Fine-tuned and deployed a localized TTS model to resolve Singaporean accent pronunciation issues, replacing the old TTS model and reducing inference latency by over 50% (from 3-4 seconds to an average of 1.5 seconds)",
+        "Working and handle all alone"
+      ],
+      "tags": ["Python", "FastAPI", "MongoDB", "Docker", "Kafka", "Linux", "vLLM", "Hugging Face", "Git", "Shell", "Langchain", "FAISS", "STT", "TTS", "RAG"]
+    },
+    {
+      "period": "Oct 2025 - Feb 2026",
+      "role": "AI Engineer",
+      "company": "PT Data Integrasi Inovasi",
+      "location": "Tangerang",
+      "type": "Full-time",
+      "description": "Solo AI engineer responsible for the full lifecycle of AI projects, from establishing a standardized codebase and developing models to building secure, scalable inference APIs and deploying them to production with Docker.",
+      "highlights": [
+        "Initiate the first end-to-end AI project independently, establishing a standardized project structure for future codebase scalability. Engineered performance optimizations that improved preprocessing efficiency by 81% and training resource utilization by 72%. The final model was operationalized using FastAPI for serving and containerized with Docker Compose for deployment",
+        "Suggesting other techniques such as few shot prompting compared to supervised fine tuning llm, which has limited resources for training and inference due to very long inputs and inconsistent dataset, causing out of memory cuda to PM and have successfully solved business problems and saved 90% in server costs by relying on the gemini API",
+        "Developing a scalable and secure API endpoint for model inference utilizing Redis for traffic throttling, JWT for stateless security, and Celery for asynchronous task processing to optimize resource utilization",
+        "Tackle every problem I met as a solo AI Engineer",
+        "Helping data engineer setup distributed airflow using docker compose",
+        "Acted as a primary technical point of contact, recognized by project leadership for consistently resolving complex development challenges and system blockers"
+      ],
+      "tags": ["Python", "FastAPI", "DVC", "Docker", "Redis", "Celery", "MLFlow", "Hugging Face", "Git"]
+    },
+    {
+      "period": "Aug 2024 - Aug 2024",
+      "role": "IT Staff",
+      "company": "Pengadilan Negeri Jakarta Barat",
+      "location": "Jakarta",
+      "type": "Internship",
+      "description": "Short-term engagement in the court’s planning, IT and reporting division, translating operational problems into technical solutions, including an integrated cross-division data bank interface and a fine-tuned Whisper speech-to-text model for transcription.",
+      "highlights": [
+        "Brainstorming with supervisor",
+        "Transform user problem to technical solution",
+        "Creating data bank to integrated data from various division into one system (Only Front End Was Completed)",
+        "Creating AI model to transcript speech to text using transfer learning with Whisper OpenAI and LoRA technique",
+        "Creating a simple UI for AI model to inference using streamlit"
+      ],
+      "tags": ["Artificial Intelligence", "Speech To Text", "LoRA", "Whisper OpenAI", "Streamlit"]
+    },
+    {
+      "period": "Jul 2024 - Present",
+      "role": "Freelance Developer",
+      "company": "Self-Employed",
+      "location": "Remote",
+      "type": "Freelance",
+      "description": "Independent engineer delivering end-to-end technical solutions for clients, spanning machine learning model development, system and database design, data pipelines, and web and mobile applications from requirements through delivery.",
+      "highlights": [
+        "Building machine learning model (object detection, recommendation system, customer segmentation, etc)",
+        "Creating system design (UML) such as use case diagram, class diagram, activity diagram, sequence diagram, etc",
+        "Create UI/UX design",
+        "Creating simple data pipeline for ETL",
+        "Building simple mobile application and website application",
+        "Design database and normalization database"
+      ],
+      "tags": ["Python", "Artificial Intelligence", "UML", "UI/UX Design", "Database Design"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "sentiment-analysis",
+      "title": "Sentiment Analysis",
+      "category": "AI Engineer",
+      "type": "Personal",
+      "summary": "A machine learning model for analyzing sentiment in text data.",
+      "description": "This project uses a machine learning model that has been trained to analyze sentiment in text. The model was built using a dataset consisting of various positive and negative text reviews.",
+      "tech": ["Python", "Flask", "TensorFlow", "Streamlit", "NLP"],
+      "color": "#1f8bff",
+      "image": "",
+      "featured": false,
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/flask-nlp-model-deployment" }
+    },
+    {
+      "id": "named-entity-recognition",
+      "title": "Named Entity Recognition",
+      "category": "AI Engineer",
+      "type": "Personal",
+      "summary": "A natural language processing model for identifying and classifying named entities in text.",
+      "description": "This project use my own architecture model that has been trained to extract and classify text. The model is built using a dataset consisting of various classes.",
+      "tech": ["Python", "TensorFlow", "Streamlit"],
+      "color": "#ff6b6b",
+      "image": "",
+      "featured": false,
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/Streamlit-interface-NER-model" }
+    },
+    {
+      "id": "automatic-speech-recognition",
+      "title": "Automatic Speech Recognition",
+      "category": "AI Engineer",
+      "type": "Professional",
+      "summary": "A machine learning model for converting spoken language into text.",
+      "description": "This project builds using Hugging Face, Pytorch, Librosa and LoRA technique with Whisper OpenAI model using on Common Voice Indonesia language mozilla dataset and creating UI using Streamlit.",
+      "tech": ["Python", "Hugging Face", "Librosa", "LoRA", "Pytorch", "Streamlit"],
+      "color": "#4d6bff",
+      "image": "",
+      "featured": false,
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/automatic-speech-recognition" }
+    },
+    {
+      "id": "image-recognition",
+      "title": "Image Recognition",
+      "category": "AI Engineer",
+      "type": "Personal",
+      "summary": "A computer vision model for identifying objects in images.",
+      "description": "This project implements an image recognition system using deep learning techniques. The model is trained on a dataset of labeled images and can identify various objects with high accuracy. This is a Capstone Project for Bangkit Academy.",
+      "tech": ["Python", "TensorFlow"],
+      "color": "#2de2ff",
+      "image": "",
+      "featured": false,
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/CapstoneHerbaID" }
+    },
+    {
+      "id": "credit-risk-modeling",
+      "title": "Credit Risk Modeling",
+      "category": "Data Science",
+      "type": "Personal",
+      "summary": "A machine learning model for predicting credit risk based on historical financial data.",
+      "description": "This project aims to develop a Credit Risk Modeling system using deep learning techniques to predict the creditworthiness of loan applicants. The model utilizes neural networks to analyze various features of loan applicants and predict whether they are likely to default on their loans.",
+      "tech": ["Python", "TensorFlow", "Pandas", "NumPy"],
+      "color": "#2C3B7D",
+      "image": "",
+      "featured": false,
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/Credit-risk-modeling" }
+    },
+    {
+      "id": "ml-pipeline-with-airflow",
+      "title": "Machine Learning Pipeline with Airflow",
+      "category": ["AI Engineer", "Data Engineer"],
+      "type": "Personal",
+      "summary": "A scalable machine learning pipeline built with Apache Airflow.",
+      "description": "This project builds with airflow as data orchestrator, Tensorflow, Minio, Docker compose, etc. The result is a model that push to Hugging Face Hub and complete with its architectural design.",
+      "tech": ["Python", "Apache Airflow", "Docker", "Minio", "Hugging Face"],
+      "color": "#2C3B7D",
+      "image": "/ml-pipeline-with-airflow.png",
+      "featured": false,
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/ML-Pipeline-with-Airflow" }
+    },
+    {
+      "id": "end-to-end-data-lifecycle",
+      "title": "End-to-End Data Lifecycle",
+      "category": ["AI Engineer", "Data Engineer"],
+      "type": "Personal",
+      "summary": "A comprehensive solution for managing the entire data lifecycle from collection to training.",
+      "description": "This project combine Data Engineer and AI Engineer skill, from scraping review data tokopedia to serving model that has been train. Built with Airflow, Docker compose, PostgreSQL, Selenium, Minio, MLFlow, DVC, FastAPI, Scikit-Learn, Xgboost, etc, complete with its architectural design.",
+      "tech": ["Python", "PostgreSQL", "Docker", "Minio", "Scikit-learn", "MLFlow", "DVC", "FastAPI"],
+      "color": "#2C3B7D",
+      "image": "/end-to-end-data-lifecycle.png",
+      "featured": false,
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/End-to-End-Data-Lifecycle" }
+    },
+    {
+      "id": "icd-prediction",
+      "title": "ICD Prediction",
+      "category": "AI Engineer",
+      "type": "Professional",
+      "summary": "-",
+      "description": "-",
+      "tech": [],
+      "color": "#4d6bff",
+      "image": "",
+      "featured": false,
+      "links": { "demo": "", "repo": "" }
+    },
+    {
+      "id": "cppt-summarization",
+      "title": "CPPT Summarization",
+      "category": "AI Engineer",
+      "type": "Professional",
+      "summary": "-",
+      "description": "-",
+      "tech": [],
+      "color": "#00b3ff",
+      "image": "",
+      "featured": false,
+      "links": { "demo": "", "repo": "" }
+    },
+    {
+      "id": "stt-llm-tts-rag-pipeline",
+      "title": "STT, LLM, TTS and RAG Pipeline",
+      "category": ["AI Engineer", "Backend Engineer", "DevOps Engineer"],
+      "type": "Professional",
+      "summary": "-",
+      "description": "-",
+      "role": "",
+      "tech": [],
+      "color": "#38bdf8",
+      "image": "",
+      "featured": false,
+      "links": { "demo": "", "repo": "" }
+    }
+  ]
+}

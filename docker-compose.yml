@@ -1,0 +1,11 @@
+services:
+  portfolio:
+    build: .
+    image: personal-portfolio:latest
+    container_name: personal-portfolio
+    ports:
+      - "8080:8080"
+    # Optional: uncomment to edit profile.json live without rebuilding the image.
+    # volumes:
+    #   - ./backend/data:/app/data:ro
+    restart: unless-stopped
