@@ -8,9 +8,13 @@ A futuristic portfolio website themed as a "sci-fi operating system". Frontend i
 - **Rotating hologram core** in the hero, glitch-effect name, and typed rotating roles.
 - **Neural network background** on a canvas that reacts to the cursor.
 - **Orbit-shaped skill matrix**: one ring per category, one node per skill.
+- **Side navigation rail**: per-section reading-progress rings, decoding labels on hover, and number keys `0`–`5` to jump between sections. Below 900px it becomes a slide-in drawer opened from a floating hexagon button.
 - **Holographic project cards**: 3D tilt effect and a unique generative visual per project (generated automatically from its `id`).
+- **Project filters**: filter by type (Professional / Personal) and by category; a project can belong to several categories.
+- **Smart project links**: Live Demo / Source Code buttons only appear when a link exists; professional projects without links show a confidentiality notice instead.
 - **Interactive terminal**: type `help`, `whoami`, `skills`, `projects`, `open 1`, `goto skills`, and more.
-- Responsive and respects `prefers-reduced-motion`.
+- **Mobile-optimized** (tested at 360px and 412px Android widths): no horizontal scrolling, tap-friendly orbit nodes and buttons, swipeable category chips, and a stable background when the browser address bar shows/hides.
+- Respects `prefers-reduced-motion`.
 
 ## Structure
 
@@ -27,7 +31,8 @@ personal-web/
     └── src/
         ├── App.jsx
         ├── api.js           # API fetch, falls back to profile.json when the API is down
-        ├── components/      # Hero, About, Skills, Projects, Terminal, ...
+        ├── components/      # SideNav, Hero, About, Skills, Projects, ProjectModal, Experience, Terminal, ...
+        ├── utils/project.js # project helpers: type, categories, link checks, default notice
         └── styles/global.css  # color tokens & base styles
 ```
 
@@ -39,8 +44,9 @@ Edit **`backend/data/profile.json`**. This is the only file you need to change. 
 - `projects[].image`: set it to use a real screenshot. If empty, a generative visual is used.
 - `projects[].color`: accent color of the project card.
 - `projects[].category`: a single category (`"AI"`) or several (`["AI", "Web"]`). The project appears under each of its category filters.
-- `projects[].type`: `"professional"` (work/client project) or `"personal"` (personal project). Shown as a badge on the card & detail view, plus a type filter above the project list.
-- `projects[].links.demo` / `links.repo`: the **Live Demo** / **Source Code** buttons only appear when the link is filled in. Leave it empty (`""`) if there is none; if both are empty, the button area is hidden.
+- `projects[].type`: `"professional"` (work/client project) or `"personal"` (personal project), case-insensitive. Shown as a badge on the card & detail view, plus a type filter above the project list.
+- `projects[].year` / `projects[].role` (optional): hidden when empty or `0`.
+- `projects[].links.demo` / `links.repo`: the **Live Demo** / **Source Code** buttons only appear when the link is filled in. Leave it empty (`""`) if there is none (`"#"` is also treated as empty); if both are empty, the button area is hidden.
 - `projects[].notice` (optional): a message shown when the project has no demo/repo link. If empty, `professional` projects without links automatically show a default notice explaining that the source code & system are confidential property of the company/client. The default text can be changed in `frontend/src/utils/project.js`.
 - `skills[]`: each category holds a list of names, e.g. `{ "category": "Backend", "items": ["Golang", "Redis"] }`. One category = one orbit ring (looks best with 3–4 categories of 3–6 items each).
 - `experience[].type`: `"work"` or `"education"`.

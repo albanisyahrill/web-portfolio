@@ -392,9 +392,17 @@
     min-width: 0;
     padding-left: 12px;
     padding-right: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.1em;
   }
   .hero-socials a {
     display: inline-block;
     padding: 10px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-cta .btn {
+    flex-basis: 100%;
   }
 }
