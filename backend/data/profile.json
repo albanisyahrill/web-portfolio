@@ -224,7 +224,7 @@
       "color": "#2C3B7D",
       "image": "/rag-with-ollama.jpg",
       "featured": false,
-      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/RAG-with-Ollama" }
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/Retrieval-Augmented-Generation-With-Ollama" }
     },
     {
       "id": "icd-prediction",
