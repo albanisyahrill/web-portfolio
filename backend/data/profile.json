@@ -29,7 +29,7 @@
     ],
     "stats": [
       { "label": "Years of Experience", "value": 2, "suffix": "+" },
-      { "label": "Projects Completed (Personal and Professional)", "value": 10, "suffix": "" },
+      { "label": "Projects Completed (Personal and Professional)", "value": 11, "suffix": "" },
       { "label": "Cups of Coffee", "value": 484, "suffix": "" }
     ]
   },
@@ -212,6 +212,19 @@
       "image": "/end-to-end-data-lifecycle.png",
       "featured": false,
       "links": { "demo": "", "repo": "https://github.com/albanisyahrill/End-to-End-Data-Lifecycle" }
+    },
+    {
+      "id": "rag-with-ollama",
+      "title": "RAG with Ollama",
+      "category": "AI Engineer",
+      "type": "Personal",
+      "summary": "A comprehensive solution for managing the entire data lifecycle from collection to training.",
+      "description": "This project combine Data Engineer and AI Engineer skill, from scraping review data tokopedia to serving model that has been train. Built with Airflow, Docker compose, PostgreSQL, Selenium, Minio, MLFlow, DVC, FastAPI, Scikit-Learn, Xgboost, etc, complete with its architectural design.",
+      "tech": ["Python", "Ollama", "Docker", "FastAPI", "Shell", "Langchain", "FAISS"],
+      "color": "#2C3B7D",
+      "image": "/rag-with-ollama.jpg",
+      "featured": false,
+      "links": { "demo": "", "repo": "https://github.com/albanisyahrill/RAG-with-Ollama" }
     },
     {
       "id": "icd-prediction",
