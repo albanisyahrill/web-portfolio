@@ -91,7 +91,7 @@ If the frontend is deployed separately (e.g. Vercel), set `VITE_API_URL=https://
 
 ## Docker
 
-Multi-stage image: build frontend (Node) → build backend (Go) → distroless runtime (~15 MB, non-root).
+Two-stage image: build frontend (Node) + backend (Go) in one builder → distroless runtime (~15 MB, non-root).
 
 ```bash
 # Using Docker Compose (recommended)

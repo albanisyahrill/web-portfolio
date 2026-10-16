@@ -1,7 +1,10 @@
 # syntax=docker/dockerfile:1
 
-# ---------- Stage 1: build frontend (React + Vite) ----------
-FROM node:24-alpine AS frontend
+# ---------- Stage 1: build frontend (React + Vite) and backend (Go) ----------
+FROM golang:1.26-alpine AS build
+RUN apk add --no-cache nodejs npm
+
+# Frontend
 WORKDIR /src/frontend
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --no-audit --no-fund
@@ -10,19 +13,18 @@ COPY frontend/ ./
 COPY backend/data/ /src/backend/data/
 RUN npm run build
 
-# ---------- Stage 2: build backend (Go) ----------
-FROM golang:1.26-alpine AS backend
-WORKDIR /src
+# Backend
+WORKDIR /src/backend
 COPY backend/go.mod ./
 RUN go mod download
 COPY backend/ ./
 RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /out/server .
 
-# ---------- Stage 3: minimal runtime ----------
+# ---------- Stage 2: minimal runtime ----------
 FROM gcr.io/distroless/static-debian12:nonroot
 WORKDIR /app
-COPY --from=backend /out/server /app/server
-COPY --from=frontend /src/frontend/dist /app/public
+COPY --from=build /out/server /app/server
+COPY --from=build /src/frontend/dist /app/public
 COPY --chown=nonroot:nonroot backend/data/profile.json /app/data/profile.json
 
 ENV PORT=8080 \
