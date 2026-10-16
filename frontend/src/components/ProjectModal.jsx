@@ -1,10 +1,51 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ProjectVisual from './ProjectVisual.jsx'
 import { categoriesOf, projectLinks, projectNotice, projectType, typeLabel } from '../utils/project.js'
 import './ProjectModal.css'
 
+/** Full-screen image viewer: fits the screen, tap/click toggles actual size for reading small diagram text. */
+function Lightbox({ src, alt, onClose }) {
+  const [actual, setActual] = useState(false)
+  const closeRef = useRef(null)
+
+  useEffect(() => {
+    closeRef.current?.focus({ preventScroll: true })
+  }, [])
+
+  return (
+    <div className={`lightbox ${actual ? 'is-actual' : ''}`} role="dialog" aria-modal="true" aria-label={alt} onClick={onClose}>
+      <div className="lightbox-bar mono" onClick={(e) => e.stopPropagation()}>
+        <button type="button" onClick={() => setActual((a) => !a)}>
+          {actual ? 'Fit to screen' : 'Actual size'}
+        </button>
+        <a href={src} target="_blank" rel="noreferrer">
+          Open ↗
+        </a>
+        <button ref={closeRef} type="button" onClick={onClose} aria-label="Close image">
+          ESC ✕
+        </button>
+      </div>
+      <div className="lightbox-stage" onClick={onClose}>
+        <img
+          src={src}
+          alt={alt}
+          onClick={(e) => {
+            e.stopPropagation()
+            setActual((a) => !a)
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
 export default function ProjectModal({ project, onClose }) {
   const closeRef = useRef(null)
+  const [zoomed, setZoomed] = useState(false)
+  const zoomedRef = useRef(false)
+  zoomedRef.current = zoomed
+
+  useEffect(() => setZoomed(false), [project])
 
   useEffect(() => {
     if (!project) return
@@ -12,7 +53,11 @@ export default function ProjectModal({ project, onClose }) {
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     closeRef.current?.focus({ preventScroll: true })
-    const onKey = (e) => e.key === 'Escape' && onClose()
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      if (zoomedRef.current) setZoomed(false)
+      else onClose()
+    }
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = prevOverflow
@@ -38,7 +83,16 @@ export default function ProjectModal({ project, onClose }) {
           </button>
         </div>
 
-        <ProjectVisual project={project} className="modal-visual" />
+        {project.image ? (
+          <button type="button" className="modal-visual-btn" onClick={() => setZoomed(true)} aria-label={`Enlarge image: ${project.title}`}>
+            <ProjectVisual project={project} className="modal-visual" />
+            <span className="modal-zoom mono" aria-hidden="true">
+              ⤢ Expand
+            </span>
+          </button>
+        ) : (
+          <ProjectVisual project={project} className="modal-visual" />
+        )}
 
         <div className="modal-content">
           <div className="modal-kicker mono">
@@ -105,6 +159,11 @@ export default function ProjectModal({ project, onClose }) {
           )}
         </div>
       </div>
+      {zoomed && (
+        <div onClick={(e) => e.stopPropagation()}>
+          <Lightbox src={project.image} alt={project.title} onClose={() => setZoomed(false)} />
+        </div>
+      )}
     </div>
   )
 }

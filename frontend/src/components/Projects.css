@@ -190,6 +190,17 @@
   height: 100%;
   object-fit: cover;
 }
+/* Uploaded images: cropped thumbnail on cards; the modal shows the whole picture */
+.pv .pv-fill {
+  display: none;
+  position: absolute;
+  inset: 0;
+  transform: scale(1.15);
+  filter: blur(18px) brightness(0.35) saturate(1.2);
+}
+.pv .pv-img {
+  position: relative;
+}
 .pv-lines path,
 .pv-lines circle {
   stroke-dashoffset: 0;

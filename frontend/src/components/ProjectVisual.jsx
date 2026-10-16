@@ -70,9 +70,11 @@ export default function ProjectVisual({ project, className = '' }) {
   const gid = `pv${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`
 
   if (project.image) {
+    // Images are often architecture diagrams: show them whole (contain) over a blurred fill.
     return (
-      <div className={`pv ${className}`} style={{ '--pv-color': color }}>
-        <img src={project.image} alt={project.title} loading="lazy" />
+      <div className={`pv pv-has-img ${className}`} style={{ '--pv-color': color }}>
+        <img className="pv-fill" src={project.image} alt="" aria-hidden="true" loading="lazy" />
+        <img className="pv-img" src={project.image} alt={project.title} loading="lazy" />
       </div>
     )
   }
